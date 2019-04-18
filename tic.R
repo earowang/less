@@ -17,5 +17,6 @@ if (Sys.getenv("id_rsa") != "") {
     add_step(step_setup_ssh())
 
   get_stage("deploy") %>%
+    add_code_step(system('echo "https://earoless.netlify.com/* https://less.earo.me/:splat 301!" > _site/_redirects')) %>%
     add_step(step_push_deploy(path = "_site", branch = "public"))
 }
