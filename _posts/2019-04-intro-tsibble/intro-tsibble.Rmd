@@ -1,0 +1,46 @@
+---
+title: "Introducing tsibble: tidy temporal data frames and tools in R"
+description: |
+  A new tidy data structure to support exploration and modeling of temporal data
+date: "`r Sys.Date()`"
+author:
+  - name: "Earo Wang"
+    url: https://earo.me
+    affiliation: Monash University
+  - name: "Dianne Cook"
+    url: http://dicook.org
+    affiliation: Monash University
+  - name: "Rob J Hyndman"
+    url: http://robjhyndman.com
+    affiliation: Monash University
+bibliography: [references.bib]
+output: distill::distill_article
+draft: true
+---
+
+```{r initial, echo = FALSE, cache = FALSE, include = FALSE}
+library(knitr)
+opts_chunk$set(
+  warning = FALSE, message = FALSE, echo = FALSE,
+  fig.path = 'figure/', fig.align = 'center', fig.show = 'hold',
+  fig.height = 5, fig.width = 8, dev = "png", dpi = 300,
+  cache.path = 'cache/', cache = TRUE, comment = "#>",
+  out.width = "100%"
+)
+```
+
+A full paper on the data structure and design principles of the **tsibble** R package can be found at arXiv (<https://arxiv.org/abs/1901.10257>).
+
+## Introduction
+
+```{r ts-model, fig.cap = "(ref:ts-model-cap)"}
+include_graphics("img/ts-model.png")
+```
+
+(ref:ts-model-cap) Illustration of the current time series analysis workflow, adapted from *R for Data Science*. The missing "tidy" temporal data structure leads to a myriad of ad hoc solutions and duplicated efforts from raw data to model-oriented time series. 
+
+## Tidy data representation for temporal data
+
+## Domain specific language for wrangling temporal data
+
+## Rolling windows with functional programming
