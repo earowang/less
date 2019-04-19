@@ -13,7 +13,8 @@ author:
   - name: "Rob J Hyndman"
     url: http://robjhyndman.com
     affiliation: Monash University
-bibliography: [references.bib]
+bibliography: biblio.bib
+slug: wang2019tsibble
 output: distill::distill_article
 draft: true
 ---
@@ -23,24 +24,31 @@ library(knitr)
 opts_chunk$set(
   warning = FALSE, message = FALSE, echo = FALSE,
   fig.path = 'figure/', fig.align = 'center', fig.show = 'hold',
-  fig.height = 5, fig.width = 8, dev = "png", dpi = 300,
-  cache.path = 'cache/', cache = TRUE, comment = "#>",
-  out.width = "100%"
+  fig.height = 5, fig.width = 8, cache.path = 'cache/', cache = TRUE,
+  comment = "#>", out.width = "100%"
 )
 ```
 
-A full paper on the data structure and design principles of the **tsibble** R package can be found at arXiv (<https://arxiv.org/abs/1901.10257>).
-
 ## Introduction
+
+Going from raw temporal data to model-ready time series objects is painful. Time series required for modelling are the notably simplified format from the data in the wild: irregular or multiple time intervals, point events that need aggregating, multiple observational units or repeated measurements on multiple individuals, and heterogeneous data types. The lack of formal organisation on temporal data leads to ad hoc efforts, and the richness of data will be lost in transition. Mining temporal information from time series objects is often inhibited by limited toolkits that hinge on that specialist format. Figure \@ref(fig:ts-model) illustrates the lumpy workflow of current time series analysis.
 
 ```{r ts-model, fig.cap = "(ref:ts-model-cap)"}
 include_graphics("img/ts-model.png")
 ```
 
-(ref:ts-model-cap) Illustration of the current time series analysis workflow, adapted from *R for Data Science*. The missing "tidy" temporal data structure leads to a myriad of ad hoc solutions and duplicated efforts from raw data to model-oriented time series. 
+(ref:ts-model-cap) Illustration of the current time series analysis workflow, adapted from *R for Data Science*. The missing "tidy" temporal data structure leads to a myriad of ad hoc solutions and duplicated efforts from raw temporal data to model-oriented time series objects. 
+
+The **tsibble** package attempts to make this process more robust and efficient. It provides a new data abstraction to represent temporal data, referred to as "*tsibble*", allowing the "tidy data" principles [@wickham2014tidy] to be brought to the time domain. It also helps to lay the plumbing for temporal data analysis modules of transformation, visualisation, and modeling, to achieve rapid iteration in gaining data insights.
 
 ## Tidy data representation for temporal data
 
 ## Domain specific language for wrangling temporal data
 
 ## Rolling windows with functional programming
+
+## Note {.appendix}
+
+A full paper on the data structure and design principles of the **tsibble** R package can be found at arXiv (<https://arxiv.org/abs/1901.10257>).
+
+This article 
