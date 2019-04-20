@@ -2,20 +2,16 @@
 title: "A new tidy data structure to support exploration and modeling of temporal data"
 description: |
   Describing the data structures and design principles of the tsibble R package
-date: "`r Sys.Date()`"
+date: "2019-04-20"
 author:
   - name: "Earo Wang"
     url: https://earo.me
     affiliation: Monash University
-  - name: "Dianne Cook"
-    url: http://dicook.org
-    affiliation: Monash University
-  - name: "Rob J Hyndman"
-    url: http://robjhyndman.com
-    affiliation: Monash University
 bibliography: biblio.bib
 slug: wang2019tsibble
-output: distill::distill_article
+output: 
+  distill::distill_article:
+    self_contain: false
 ---
 
 ```{r initial, echo = FALSE, cache = FALSE, include = FALSE}
@@ -132,4 +128,4 @@ The **tsibble** R package articulates the time series data pipeline, which sheph
 
 This article is originally written for the Software Corner of the [Biometric Bulletin](https://www.biometricsociety.org/publications/biometricbulletin/) (to appear).
 
-A longer version of the data structure and design principles about the **tsibble** R package can be found at arXiv (<https://arxiv.org/abs/1901.10257>).
+This is a joint work with [Dianne Cook](http://dicook.org) and [Rob J Hyndman](http://robjhyndman.com). A longer version of the data structure and design principles about the **tsibble** R package can be found at arXiv (<https://arxiv.org/abs/1901.10257>).
