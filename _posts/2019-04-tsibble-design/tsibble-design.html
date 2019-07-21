@@ -967,7 +967,7 @@
 
 <div class="d-article">
 <h2 id="introduction">Introduction</h2>
-<p>Going from raw temporal data to model-ready time series objects is painful. Temporal data in the wild can arrive in many possible formats: irregular or multiple time intervals, point events that need aggregating, multiple observational units or repeated measurements on multiple individuals, and heterogeneous data types. But time series required for modelling are the notably simplified matrices, and it does not provide formal organisation on how to map wild data to the expected objects. This results in a myriad of ad hoc (and possibly inaccurate) solutions and the loss of the data richness while in transition. Mining temporal information from time series objects is also inhibited by limited toolkits that hinge on that specialist format. Figure <a href="#fig:ts-model">1</a> illustrates the lumpy workflow of current time series analysis.</p>
+<p>Going from raw temporal data to model-ready time series objects is painful. Temporal data in the wild can arrive in many possible formats: irregular or multiple time intervals, point events that need aggregating, multiple observational units or repeated measurements on multiple individuals, and heterogeneous data types. For modelling purposes, time series data needs to be coerced into simplified matrices, however there is currently no formal process for how to organise and map wild time series data into model-ready data frames. This results in a myriad of ad hoc (and possibly inaccurate) solutions and the loss of the data richness while in transition. Mining temporal information from time series objects is also inhibited by limited toolkits that hinge on that specialist format. Figure <a href="#fig:ts-model">1</a> illustrates the lumpy workflow of current time series analysis.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="figure" style="text-align: center"><span id="fig:ts-model"></span>
 <img src="img/ts-model.png" alt="Illustration of the current time series analysis workflow, adapted from R for Data Science (Wickham and Grolemund 2016). The missing “tidy” temporal data structure leads to a myriad of ad hoc solutions and duplicated efforts from raw temporal data to model-oriented time series objects." width="100%" />
@@ -977,7 +977,7 @@ Figure 1: Illustration of the current time series analysis workflow, adapted fro
 </div>
 </div>
 
-<p>The <a href="http://tsibble.tidyverts.org"><strong>tsibble</strong></a> package aims to make this workflow more robust, accurate, and efficient, as visualised in Figure <a href="#fig:tsibble-fit">2</a>. It provides a new data abstraction to represent temporal data, referred to as “<em>tsibble</em>”, allowing the “tidy data” principles <span class="citation" data-cites="wickham2014tidy">(Wickham <a href="#ref-wickham2014tidy">2014</a>)</span> to be brought to the time domain. It also helps to lay the plumbing for temporal data analysis modules of transformation, visualisation, and modeling, to achieve rapid iteration in gaining data insights.</p>
+<p>The <a href="http://tsibble.tidyverts.org"><strong>tsibble</strong></a> package aims to make this workflow more robust, accurate, and efficient, as visualised in Figure <a href="#fig:tsibble-fit">2</a>. It provides a new data abstraction to represent temporal data, referred to as “<em>tsibble</em>”, allowing the “tidy data” principles <span class="citation" data-cites="wickham2014tidy">(Wickham <a href="#ref-wickham2014tidy">2014</a>)</span> to be brought to the time domain. It also helps to lay the plumbing for temporal data analysis modules of transformation, visualisation, and modelling, to achieve rapid iteration in gaining data insights.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="figure" style="text-align: center"><span id="fig:tsibble-fit"></span>
 <img src="img/tsibble-fit.png" alt="Tsibble defines tidy data in temporal context and lubricates the process of time series analysis." width="100%" data-distill-preview=1 />
@@ -988,7 +988,7 @@ Figure 2: Tsibble defines tidy data in temporal context and lubricates the proce
 </div>
 
 <h2 id="tidy-data-representation-for-temporal-data">Tidy data representation for temporal data</h2>
-<p>First and foremost, <em>tsibble</em> represents tidy temporal data. Contextual semantics—index and key—are introduced to tidy data in order to support more intuitive time-aware manipulations and enlighten new perspectives for time series model inputs. A variable representing time, referred as “index”, provides a contextual basis for temporal data. The “key” consisted of a single or multiple variables informs what identities or observational units are recorded over time. The remaining columns are considered as measurements. Figure <a href="#fig:tsibble-semantics">3</a> demonstrates the shape of a <em>tsibble</em>, but the <em>tsibble</em> for being valid has to pass the hurdle of distinct rows identified by the index and key. Otherwise duplicates signal a data quality issue, which would likely affect subsequent analyses and hence decision making. This ensures the <em>tsibble</em> to be a valid input for time series analytics and models.</p>
+<p>First and foremost, tsibble represents tidy temporal data. Contextual semantics—index and key—are introduced to tidy data in order to support more intuitive time-aware manipulations and enlighten new perspectives for time series model inputs. A variable representing time, referred as “index”, provides a contextual basis for temporal data. The “key” consists of one or more variables that uniquely identify the observational units recorded over time. The remaining columns are considered as measurements. Figure <a href="#fig:tsibble-semantics">3</a> demonstrates the shape of a <em>tsibble</em>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="figure" style="text-align: center"><span id="fig:tsibble-semantics"></span>
 <img src="img/tsibble-semantics.png" alt="The architecture of the tsibble structure is built on top of the tidy data, with time-series contextual semantics: index and key." width="100%" />
@@ -998,7 +998,8 @@ Figure 3: The architecture of the <em>tsibble</em> structure is built on top of 
 </div>
 </div>
 
-<p>To create a <em>tsibble</em>, one needs to declare the index and key. Hourly pedestrian counts at different locations in downtown Melbourne are used as an example. The “key” includes four sensors, and the “index” contains date-times of one hour interval along with the time zone of Melbourne. Below displays contextually comprehensive details that aid users in understanding their data better.</p>
+<p>In order to be a valid <em>tsibble</em> we require distinct rows as identified by the index and key. Duplicate rows in the index and key variables signal a data quality issue, which would likely affect subsequent analyses and hence decision making. This requirement ensures the <em>tsibble</em> is a valid input for time series analytics and models.</p>
+<p>To create a <em>tsibble</em>, one needs to declare the index and key. Hourly pedestrian counts at different locations in downtown Melbourne, Australia are used as an example. The “key” includes four sensors, and the “index” contains date-times of one hour interval along with the time zone of Melbourne. The output displays contextually comprehensive details that aid users in understanding their data better.</p>
 <div class="layout-chunk" data-layout="l-body">
 <pre class="r"><code>
 library(tsibble)
@@ -1015,7 +1016,7 @@ pedestrian %&gt;%
 #&gt; # … with 6.603e+04 more rows</code></pre>
 </div>
 <h2 id="domain-specific-language-for-wrangling-temporal-data">Domain specific language for wrangling temporal data</h2>
-<p>Besides a data abstraction, <strong>tsibble</strong> is a domain specific language (DSL) in R for transforming temporal data. It leverages the <strong>tidyverse</strong> verbs and adds some new verbs/adverbs to the vocabularies for more intuitive time-based manipulations. Since a <em>tsibble</em> permits time gaps in the index, it is good practice to check and inspect any gaps in time following the creation of a <em>tsibble</em>, in order to prevent inviting some avoidable errors into the analysis. A suite of verbs are provided to understand and tackle implicit missing values; and <code>fill_gaps()</code> turns them into explicit ones along with imputing by values or functions.</p>
+<p>Besides a data abstraction, <strong>tsibble</strong> is a domain specific language (DSL) in R for transforming temporal data. It leverages the <strong>tidyverse</strong> verbs and adds some new verbs/adverbs to the vocabularies for more intuitive time-based manipulations. Since a <em>tsibble</em> permits time gaps in the index, it is good practice to check and inspect any gaps in time following the creation of a <em>tsibble</em>, in order to prevent inviting some avoidable errors into the analysis. A suite of verbs are provided to understand and tackle implicit missing values; and <code>fill_gaps()</code> turns them into explicit ones along with imputing by values or functions. For example, the code below, sets implicit missing counts in the pedestrian data set to zero before finding the lag and plotting.</p>
 <div class="layout-chunk" data-layout="l-body">
 <pre class="r"><code>
 library(tidyverse)
@@ -1028,7 +1029,7 @@ pedestrian %&gt;%
   facet_wrap(~ Sensor, ncol = 2, scales = &quot;free&quot;)</code></pre>
 <p><img src="figure/tsibble-lag-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<p>A new adverb <code>index_by()</code> adjacent to a verb allows for index subgrouping operations. In conjunction with <code>summarise()</code>, it performs aggregations over time to different time resolutions.</p>
+<p>A new adverb <code>index_by()</code> adjacent to a verb allows for index subgrouping operations. In conjunction with <code>summarise()</code>, it performs aggregations over time to different time resolutions. The following snippet demonstrates how monthly average pedestrian counts are computed for each sensor and then plot with <strong>ggplot2</strong>.</p>
 <div class="layout-chunk" data-layout="l-body-outset">
 <pre class="r"><code>
 pedestrian %&gt;% 
@@ -1053,6 +1054,7 @@ pedestrian %&gt;%
 <summary>Rolling window animation</summary> <img src="https://tsibble.tidyverts.org/reference/figures/animate-1.gif" align="center" />
 </details>
 <p>Rolling window embraces functional programming, which frees users from verbose statements but focuses on succinct expressions instead. These expressions can be as simple as moving averages, or as complex as rolling regressions and forecasting. This family turns out useful for time series cross validation. Their multiprocessing equivalents prefixed by <code>future_*()</code> enable easy switch to rolling in parallel.</p>
+<p>An example of rolling regression in parallel is given below. A weekly sliding window (<code>.size = 24 * 7</code>) is carried out for each sensor on a small subset of pedestrian data. The subset is defined through <code>filter_index(~ &quot;2015-03&quot;)</code>, in which <code>~ &quot;2015-03&quot;</code> is shorthand for “from the start of the time to the end of March 2015”. For each element in the sliding window, the components of interest from the regression model, fitted values and residuals, are extracted and squeezed into list columns of a tibble.</p>
 <div class="layout-chunk" data-layout="l-body">
 <pre class="r"><code>
 library(furrr)
@@ -1077,9 +1079,12 @@ pedestrian %&gt;%
 </div>
 <h2 id="conclusions">Conclusions</h2>
 <p>The <strong>tsibble</strong> R package articulates the time series data pipeline, which shepherds raw temporal data through to time series analysis, and plots. It also lays the fundamental computing infrastructure of a new ecosystem for tidy time series analysis, known as <a href="http://tidyverts.org">“tidyverts”</a>, including time series features (the <code>feasts</code> package) and forecasting (the <code>fable</code> package).</p>
+<p>(Last updated: Jul 21, 2019)</p>
 <h2 id="note" class="appendix">Note</h2>
 <p>This article is originally written for the Software Corner of the <a href="https://www.biometricsociety.org/publications/biometricbulletin/">Biometric Bulletin</a> (to appear).</p>
 <p>This is a joint work with <a href="http://dicook.org">Dianne Cook</a> and <a href="http://robjhyndman.com">Rob J Hyndman</a>. A longer version of the data structure and design principles about the <strong>tsibble</strong> R package can be found at arXiv (<a href="https://arxiv.org/abs/1901.10257" class="uri">https://arxiv.org/abs/1901.10257</a>).</p>
+<h2 id="acknowledgements" class="appendix">Acknowledgements</h2>
+<p>The author would like to thank Garth Tarr for editing and reviewing the article, which improves the readability.</p>
 <div id="refs" class="references">
 <div id="ref-wickham2014tidy">
 <p>Wickham, Hadley. 2014. “Tidy Data.” <em>Journal of Statistical Software</em> 59 (10). Foundation for Open Access Statistics: 1–23.</p>
