@@ -1,0 +1,7 @@
+Package: less
+Version: 0.1.0
+Imports: 
+    distill,
+    rmarkdown
+Remotes:
+    rstudio/distill

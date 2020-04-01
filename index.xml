@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+  <channel>
+    <title>Less &lt;&gt; More</title>
+    <link>https://less.earo.me</link>
+    <atom:link href="https://less.earo.me/index.xml" rel="self" type="application/rss+xml"/>
+    <description>less than papers, more than blog posts
+</description>
+    <generator>Distill</generator>
+    <lastBuildDate>Sat, 20 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>A new tidy data structure to support exploration and modeling of temporal data</title>
+      <dc:creator>Earo Wang</dc:creator>
+      <link>https://less.earo.me/posts/2019-04-tsibble-design</link>
+      <description>Describing the data structures and design principles of the tsibble R package</description>
+      <guid>https://less.earo.me/posts/2019-04-tsibble-design</guid>
+      <pubDate>Sat, 20 Apr 2019 00:00:00 +0000</pubDate>
+      <media:content url="https://less.earo.me/posts/2019-04-tsibble-design/img/tsibble-fit.png" medium="image" type="image/png" width="1836" height="732"/>
+    </item>
+  </channel>
+</rss>
